@@ -1,21 +1,25 @@
 # Pomodoro timer
 import time
 
-work_minutes = 25
-pause_minutes_short = 5
-pause_minutes_long = 20
+def count_seconds():
+    pass
 
-min_time = 0
+def count_minutes():
+    pass
 
+if __name__ == "__main__":
+    work_minutes = 25
+    pause_minutes_short = 5
+    pause_minutes_long = 20
 
-while min_time < 5:
+    time_minutes = 0
 
-    sec_time = 0
-    while sec_time < 60:
-        time.sleep(1)
-        print(f"{min_time} minuten : {sec_time} sekunden")
-        sec_time += 1
+    while time_minutes < work_minutes:
 
+        time_seconds = 0
+        while time_seconds < 60:
+            time.sleep(1)
+            print(f"{time_minutes} minuten : {time_seconds} sekunden")
+            time_seconds += 1
 
-
-    min_time += 1
+        time_minutes += 1

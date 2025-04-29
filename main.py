@@ -14,25 +14,34 @@ def count_minutes(cm_time_minutes: int) -> str:
         return str(cm_time_minutes)
 
 
+
 if __name__ == "__main__":
+    is_running = True
     work_minutes = 25
     pause_minutes_short = 5
     pause_minutes_long = 20
 
+    time_seconds = 0
     time_minutes = 0
     string_minutes = "00"
     string_seconds = "00"
 
-    while time_minutes < work_minutes:
+    pomodoro_array = [work_minutes, pause_minutes_short,
+                      work_minutes, pause_minutes_short,
+                      work_minutes, pause_minutes_short,
+                      work_minutes, pause_minutes_long]
 
-        time_seconds = 0
-        while time_seconds < 60:
-            time.sleep(1)
 
-            string_seconds = count_seconds(time_seconds)
-
-            print(f"{string_minutes} : {string_seconds}")
-            time_seconds += 1
-
-        time_minutes += 1
+    while is_running:
+        string_seconds = count_seconds(time_seconds)
         string_minutes = count_minutes(time_minutes)
+
+        time.sleep(1)
+
+        print(f"{string_minutes} : {string_seconds}")
+
+        time_seconds += 1
+
+        if time_seconds == 60:
+            time_seconds = 0
+            time_minutes += 1

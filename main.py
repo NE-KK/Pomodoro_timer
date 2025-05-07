@@ -13,11 +13,15 @@ def count_minutes(cm_time_minutes: int) -> str:
     else:
         return str(cm_time_minutes)
 
-def set_pomodoro_phase():
-    return "Work"
+def set_pomodoro_phase(spp_pomodoro_counter):
+    if spp_pomodoro_counter % 2 == 0:
+        return "Work"
+    else:
+        return "Pause"
 
 if __name__ == "__main__":
     is_running = True
+    pomodoro_counter = 0
     work_minutes = 25
     pause_minutes_short = 5
     pause_minutes_long = 20
@@ -36,14 +40,17 @@ if __name__ == "__main__":
     while is_running:
         string_seconds = count_seconds(time_seconds)
         string_minutes = count_minutes(time_minutes)
-        pomodoro_phase = set_pomodoro_phase()
+        pomodoro_phase = set_pomodoro_phase(pomodoro_counter)
 
         print(f"{pomodoro_phase}:   {string_minutes} : {string_seconds}")
 
         time.sleep(1)
         time_seconds += 1
 
+
         if time_seconds == 60:
             time_seconds = 0
             time_minutes += 1
 
+        if string_minutes == "00" and string_seconds == "00":
+            pomodoro_counter += 1

@@ -2,11 +2,14 @@
 import time
 
 def count_seconds(cs_time_seconds: int) -> str:
+    seconds_countdown = 60 - cs_time_seconds
 
-    if cs_time_seconds < 10:
-        return str("0" + str(cs_time_seconds))
+    if seconds_countdown == 60:
+        return "00"
+    elif seconds_countdown < 10:
+        return str("0" + str(seconds_countdown))
     else:
-        return str(cs_time_seconds)
+        return str(seconds_countdown)
 
 def count_minutes(cm_time_minutes: int, cm_pomodoro_time: int) -> str:
     cm_time_minutes = cm_pomodoro_time - cm_time_minutes
@@ -47,9 +50,11 @@ if __name__ == "__main__":
 
         print(f"{pomodoro_phase}:   {string_minutes} : {string_seconds}")
 
+        if time_seconds == 0:
+            pass
+
         time.sleep(1)
         time_seconds += 1
-
 
         if time_seconds == 60:
             time_seconds = 0
